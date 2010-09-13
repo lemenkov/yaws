@@ -19,13 +19,13 @@ install:	all
 	for d in $(SUBDIRS) ; do \
 	    if [ -f $$d/Makefile ]; then ( cd $$d && $(MAKE) $@ ) || exit 1 ; fi ; \
 	done
-	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib/pkgconfig
-	$(INSTALL) -m 644 $(PKGCONFIG_FILES) $(DESTDIR)$(PREFIX)/lib/pkgconfig
+	$(INSTALL) -d $(DESTDIR)$(LIBDIR)/pkgconfig
+	$(INSTALL) -m 644 $(PKGCONFIG_FILES) $(DESTDIR)$(LIBDIR)/pkgconfig
 	@echo "-------------------------------"
 	@echo
 	@echo "** etc files went into        ${ETCDIR}"	
 	@echo "** executables went into      ${prefix}/bin"		
-	@echo "** library files went into    ${prefix}/lib/yaws"
+	@echo "** library files went into    ${LIBDIR}/yaws"
 	@echo "** var files went into        ${VARDIR}"
 	@echo "** default docroot went into  ${VARDIR}/yaws/www"
 	@echo
@@ -76,7 +76,7 @@ foo:
 	@echo
 	@echo "** etc files will go into     ${ETCDIR}"	
 	@echo "** executables will go into   ${prefix}/bin"		
-	@echo "** library file will go into  ${prefix}/lib/yaws"
+	@echo "** library file will go into  ${LIBDIR}/yaws"
 	@echo "** var files will go into     ${VARDIR}"
 	@echo
 	@echo "--------------------------------"

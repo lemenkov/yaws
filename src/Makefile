@@ -114,15 +114,15 @@ clean:
 	rm -f $(EBIN_FILES) yaws_generated.erl charset.def mime_types.erl yaws_configure.hrl ../ebin/*.beam
 
 install: regen all docsinstall
-	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib/yaws/examples/ebin
-	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib/yaws/examples/include
-	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib/yaws/ebin
-	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib/yaws/priv
-	$(INSTALL) -d $(DESTDIR)$(VARDIR)/log/yaws
+	$(INSTALL) -d $(DESTDIR)$(LIBDIR)/yaws/examples/ebin
+	$(INSTALL) -d $(DESTDIR)$(LIBDIR)/yaws/examples/include
+	$(INSTALL) -d $(DESTDIR)$(LIBDIR)/yaws/ebin
+	$(INSTALL) -d $(DESTDIR)$(LIBDIR)/yaws/priv
+	$(INSTALL) -d $(DESTDIR)$/var/log/yaws
 	$(INSTALL) -d $(DESTDIR)$(VARDIR)/yaws/ebin
-	(cd ..; tar cf - ebin ) | (cd $(DESTDIR)$(PREFIX)/lib/yaws; tar xf - )
-	(cd ..; tar cf - include ) | (cd $(DESTDIR)$(PREFIX)/lib/yaws; tar xf - )
-	(cd ..; tar cf - priv/*.xsd ) | (cd $(DESTDIR)$(PREFIX)/lib/yaws; tar xf - )
+	(cd ..; tar cf - ebin ) | (cd $(DESTDIR)$(LIBDIR)/yaws; tar xf - )
+	(cd ..; tar cf - include ) | (cd $(DESTDIR)$(LIBDIR)/yaws; tar xf - )
+	(cd ..; tar cf - priv/*.xsd ) | (cd $(DESTDIR)$(LIBDIR)/yaws; tar xf - )
 	$(RM) yaws_generated.erl ../ebin/yaws_generated.beam 2>/dev/null || true
 
 docsinstall:

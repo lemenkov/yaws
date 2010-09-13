@@ -2,9 +2,10 @@
 
 
 PREFIX             = @prefix@
+LIBDIR             = @libdir@
 prefix             = ${PREFIX}
 ETCDIR             = @sysconfdir@
-VARDIR             = @localstatedir@
+VARDIR             = @localstatedir@/lib
 
 DVILATEX = @DVILATEX@
 PDFLATEX = @PDFLATEX@

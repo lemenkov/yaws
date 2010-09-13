@@ -38,10 +38,10 @@ local_install:	../bin/yaws
 
 
 yaws.conf:
-	@echo PREFIX is $(PREFIX)
+	@echo LIBDIR is $(LIBDIR)
 	cat yaws.conf.template | \
-		./Subst %yawsdir% "$(PREFIX)/lib/yaws"  | \
-		./Subst %logdir% "$(PREFIX)/var/log/yaws"  | \
+		./Subst %yawsdir% "$(LIBDIR)/yaws"  | \
+		./Subst %logdir% "/var/log/yaws"  | \
 		./Subst %vardir% "$(VARDIR)"  | \
 		./Subst %host% `hostname`  | \
 		./Subst %port% 80  | \
@@ -57,7 +57,7 @@ install:	.install
 .install:
 	-rm -rf /tmp/yaws 2> /dev/null
 	sh  ./Install $(PREFIX) $(ERL) \
-		$(WERL) $(ETCDIR)/ $(VARDIR)/ $(ERLBINDIR)/ $(DESTDIR)
+		$(WERL) $(ETCDIR)/ $(VARDIR)/ $(ERLBINDIR)/ $(LIBDIR)/ $(DESTDIR)
 	@if [ -f $(DESTDIR)$(ETCDIR)/yaws/yaws.conf ]; \
 		then echo "Keeping old config file "; \
 		cp yaws.conf $(DESTDIR)$(ETCDIR)/yaws/yaws.conf.template; \

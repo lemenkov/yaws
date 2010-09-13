@@ -8,7 +8,8 @@ werl=$3
 etcdir=$4
 vardir=$5
 bindir=$6
-destdir=$7
+libdir=$7
+destdir=$8
 
 #bindir=`dirname $erl` ; bindir=`dirname $bindir`/lib/erlang/bin
 
@@ -20,10 +21,10 @@ v=${vardir}
 
 install -d ${destdir}${prefix}/bin
 install -d ${destdir}${prefix}/etc
-install -d ${destdir}${vardir}/log/yaws
+install -d ${destdir}/var/log/yaws
 
 cat yaws.template | \
-    ./Subst %yawsdir% ${prefix}/lib/yaws | \
+    ./Subst %yawsdir% ${libdir}/yaws | \
     ./Subst %vardir% ${vardir} | \
     ./Subst %erl% "${erl}" | \
     ./Subst %run_erl% "${bindir}/run_erl" | \
@@ -32,8 +33,8 @@ cat yaws.template | \
 
 chmod +x ${destdir}${prefix}/bin/yaws
 
-install -d ${destdir}${prefix}/lib/yaws/examples/ebin
-install -d ${destdir}${prefix}/lib/yaws/examples/include
+install -d ${destdir}${libdir}/yaws/examples/ebin
+install -d ${destdir}${libdir}/yaws/examples/include
 
 ## seems gentoo don't like to be installed in /usr/local/etc
 ## since /sbin/runscript still reads /etc/conf.d
