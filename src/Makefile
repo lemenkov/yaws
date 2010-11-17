@@ -55,6 +55,7 @@ MODULES=yaws \
 	yaws_sup_restarts \
 	yaws_stats \
 	yaws_multipart \
+	yaws_dime \
 	$(BITSMODS)
 
 
