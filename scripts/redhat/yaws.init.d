@@ -4,7 +4,7 @@
 #
 # config: /etc/yaws.conf
 #
-# chkconfig: 2345 65 35
+# chkconfig: - 65 35
 # description: yaws - Erlang enabled http server
 # use "/sbin/chkconfig --add yaws" to install
 
@@ -21,6 +21,7 @@ prog=yaws
 yawsid=default
 #yawsid_opts="--id $yawsid"
 conf="--conf %etcdir%yaws/yaws.conf"
+[ "$HOME" ] || HOME=/root
 
 start() {
         echo -n $"Starting $prog: "
@@ -62,7 +63,7 @@ case "$1" in
 	stop
 	;;
   status)
-        $yaws -S
+	[ -f ${HOME}/.yaws/yaws/default/CTL ] && $yaws -S
 	RETVAL=$?
 	;;
   restart)
@@ -70,7 +71,7 @@ case "$1" in
 	start
 	;;
   condrestart)
-	if [ -f /tmp/yaws.ctl ] ; then
+	if [ -f ${HOME}/.yaws/yaws/default/CTL ] && $yaws -S >/dev/null 2>&1; then
 		stop
 		start
 	fi
